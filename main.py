@@ -29,9 +29,11 @@ def searchByColumn(p_collection_name, p_column_name, p_column_value):
 # This function will return the total number of employees in the specified collection.
 def getEmpCount(p_collection_name):
     if p_collection_name in collections:
-        count = len(collections[p_collection_name])
-        print(f"Employee count in collection '{p_collection_name}': {count}")
-        return count
+        emp_count = len(collections[p_collection_name])
+        print(f"Employee count in collection '{p_collection_name}': {emp_count}")
+    else:
+        print(f"Collection '{p_collection_name}' does not exist.")
+
 
 # deleting an employee with their EmployeeID.
 def delEmpById(p_collection_name, p_employee_id):
@@ -50,22 +52,24 @@ def getDepFacet(p_collection_name):
         print(f"Department facet in collection '{p_collection_name}': {dep_count}")
         return dep_count
 
-# Replace <Your Name> and <Your Phone last four digits> with actual values
-v_nameCollection = 'Hash_K.Hemachandra'
-v_phoneCollection = 'Hash_3286'
-
+v_nameCollection = 'Hemachandra'
+v_phoneCollection = '3286'
 createCollection(v_nameCollection)
 createCollection(v_phoneCollection)
 getEmpCount(v_nameCollection)
+
 indexData(v_nameCollection, 'Department')
 indexData(v_phoneCollection, 'Gender')
 
 delEmpById(v_nameCollection, 'E02003')
 
 getEmpCount(v_nameCollection)
+
 searchByColumn(v_nameCollection, 'Department', 'IT')
 searchByColumn(v_nameCollection, 'Gender', 'Male')
-searchByColumn(v_phoneCollection, 'Department', 'IT')
 
+searchByColumn(v_phoneCollection, 'Department', 'IT')
 getDepFacet(v_nameCollection)
 getDepFacet(v_phoneCollection)
+
+
